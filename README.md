@@ -1,44 +1,80 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# Download ES7 React/ Redux snippets in vscode extension
 
-## Available Scripts
+# STEPS
 
-In the project directory, you can run:
+- Install react
 
-### `npm start`
+```bash
+$ npx create-react-app linkedin-clone-yt --template redux
+```
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Visit **https://console.firebase.google.com/** and create your project
+- After creating your app in firebase, click **cloud firestore**
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+* Click **create database**
+* select **start in test mode** and then click **Next** and then click **Enable**
+* From the window that opens, click rules and delete the if condition after read, write so you don't get errors from messages sent from your application Then click on **publish**. Though this is not advisable in production mode. So you will have something similar to this:
 
-### `npm test`
+```bash
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write;
+    }
+  }
+}
+```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Then from the left aside bar in firebase, click **authentication**, then click on **Get started**.
 
-### `npm run build`
+* Select your prefered sigin method and enable it. Here i chose email/ password signin.
+* Click the gear icon from the left aside bar navigation and select **project settings**, at the bottom of the opened page, click on the icon with this figure **< />**. Enter your app name under register app and also check the box **Also setup firebase hosting for this app**, then click on **register app** and click on **Next**.
+* Then in your project terminal on vscode, run the below code
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+$ npm install -g firebase-tools
+```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- On the firebase website, click **next**, then click **continue to the console**.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* Under Project settings -> General -> Your apps section, select **config** option button and copy the configuration settings there.
+* From your vscode project folder, open src folder and delete App.tets.js, logo.svg, setupTests.js
+* Delete everything from App.js file to leave only this structure below
 
-### `npm run eject`
+```js
+import React from "react";
+import "./App.css";
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+function App() {
+  return <div className="app"></div>;
+}
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+export default App;
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Delete everything from App.css
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+* In index.css, add the below code at the top of the page
 
-## Learn More
+```css
+* {
+  margin: 0;
+}
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Visit material ui website in **https://material-ui.com/**
+- Install material ui using
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+$ npm install @material-ui/core
+```
+
+You can type **icons** in the material ui website search box to show the code needed to install material ui icons or you use the code below.
+Install material icons using
+
+````bash
+$ npm install @material-ui/icons
+```
+* To select a particular icon, go to the link below **https://material-ui.com/components/material-icons/**
+````
