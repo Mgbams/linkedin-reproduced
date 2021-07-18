@@ -1,4 +1,6 @@
-# Download ES7 React/ Redux snippets in vscode extension
+## EXTENSIONS
+
+- ES7 React/ Redux snippets in vscode extension
 
 # STEPS
 
