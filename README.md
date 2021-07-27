@@ -80,3 +80,13 @@ $ npm install @material-ui/icons
 ```
 * To select a particular icon, go to the link below **https://material-ui.com/components/material-icons/**
 ````
+
+## Connect project to firebase
+
+1. Create a file Firebase.js in your project
+2. Copy the config settings from of your project from firebase and paste it in the file Firebase.js
+3. Open terminal in your project and install firebase e.g
+
+```bash
+$ npm install firebase
+```
