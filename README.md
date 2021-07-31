@@ -84,9 +84,88 @@ $ npm install @material-ui/icons
 ## Connect project to firebase
 
 1. Create a file Firebase.js in your project
-2. Copy the config settings from of your project from firebase and paste it in the file Firebase.js
+2. Copy the config settings from of your project from firebase and paste it in the file Firebase.js e.g
+
+```js
+import firebase from "firebase";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDqW5LOQG5dmRuwEQR7qBfSFkUvMkhlofg",
+  authDomain: "linkedin-clone-yt-38083.firebaseapp.com",
+  projectId: "linkedin-clone-yt-38083",
+  storageBucket: "linkedin-clone-yt-38083.appspot.com",
+  messagingSenderId: "796452339024",
+  appId: "1:796452339024:web:3736b3b3a76509ce5f0055",
+};
+
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+const db = firebaseApp.firestore();
+const auth = firebase.auth();
+
+export { db, auth };
+```
+
+**NOTE:** You have to add the import line and the last for lines to connect your project properly.
+Then check in Feed.js and see the connection as shown below:
+
+```js
+import { useEffect } from "react";
+import { db } from "./Firebase";
+import firebase from "firebase";
+
+const [posts, setPosts] = useState([]);
+const [input, setInput] = useState("");
+
+useEffect(() => {
+  db.collection("posts").onSnapshot((snapshot) => {
+    setPosts(
+      snapshot.docs.map((doc) => ({
+        id: doc.id,
+        data: doc.data(),
+      }))
+    );
+  });
+}, []);
+
+const sendPost = (e) => {
+  e.preventDefault();
+  db.collection("posts").add({
+    name: "Mgbams Kingsley",
+    description: "This is a test",
+    message: input, //Message is the input coming from the input field
+    photoUrl: "",
+    timestamp: firebase.firestore.FieldValue.serverTimestamp(), //To ensure same timestamp for all countries
+  });
+};
+
+//This is the mapping to display posts
+{
+  posts.map(({ id, data: { name, description, message, photoUrl } }) => (
+    <Post
+      key={id}
+      name={name}
+      message={message}
+      description={description}
+      photoUrl={photoUrl}
+    />
+  ));
+}
+```
+
 3. Open terminal in your project and install firebase e.g
 
 ```bash
 $ npm install firebase
 ```
+
+## Cleaning counter folder
+
+- Move the contents of counter folder into Features folder and delete Counter.modules.css file and counter folder
+
+* Open store.js and change the link to CounterSlice.js as shown below
+
+```js
+import counterReducer from "../features/counterSlice";
+```
+
+-
