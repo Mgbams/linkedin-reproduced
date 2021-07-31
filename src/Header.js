@@ -7,8 +7,18 @@ import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import BusinessCenterIcon from "@material-ui/icons/BusinessCenter";
 import ChatIcon from "@material-ui/icons/Chat";
 import NotificationsIcon from "@material-ui/icons/Notifications";
+import { auth } from "./Firebase";
+import { useDispatch } from "react-redux";
+import { logout } from "./features/userSlice";
 
 function Header() {
+  const dispatch = useDispatch();
+
+  const logOutOfApp = () => {
+    dispatch(logout());
+    auth.signOut();
+  };
+
   return (
     <div className="header">
       <div className="header_left">
@@ -31,6 +41,7 @@ function Header() {
         <HeaderOption
           avatar="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTue0QzcbncaPSxMCpLhzOab4a1Sux6xXpow&usqp=CAU"
           title="me"
+          onClick={logOutOfApp}
         />
       </div>
     </div>
