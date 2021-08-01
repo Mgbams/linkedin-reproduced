@@ -211,3 +211,7 @@ const Post = forwardRef(({ name, description, message, photoUrl }, ref) => {
 ```
 
 **NOTE:** Make sure each post has an id key to stop the animation from being weird
+
+## CSS CRACKS
+
+- height: fit-content;
