@@ -169,3 +169,45 @@ import counterReducer from "../features/counterSlice";
 ```
 
 -
+
+## Adding animations using react flip move
+
+Check the link below for more information: (react-flip-move)[https://github.com/joshwcomeau/react-flip-move]
+
+- Install react flip move using
+
+```bash
+$  npm i react-flip-move
+```
+
+**USAGE**
+In the file where you're to use the flip animation do the following:
+
+- In the component definition e.g in Post.js component, change the function to an arrow function, then wrap it with forwardRef, and add **ref** as a parameter. Finally add **ref={re}** inside the enclosing div of the function e.g
+
+```js
+const Post = forwardRef(({ name, description, message, photoUrl }, ref) => {
+  return <div ref={ref} className="post"></div>;
+});
+```
+
+- import forwardRef from react e.g **import React, { forwardRef } from "react";**
+
+* Import FlipMove i.e **import FlipMove from "react-flip-move"**;
+* Surround the element to be flipped with FlipMove element e.g
+
+```js
+<FlipMove>
+  {posts.map(({ id, data: { name, description, message, photoUrl } }) => (
+    <Post
+      key={id}
+      name={name}
+      message={message}
+      description={description}
+      photoUrl={photoUrl}
+    />
+  ))}
+</FlipMove>
+```
+
+**NOTE:** Make sure each post has an id key to stop the animation from being weird
