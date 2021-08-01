@@ -1,3 +1,7 @@
+### APP URL
+
+[Linkedin-Duplica](https://linkedin-clone-yt-38083.web.app/)
+
 ## EXTENSIONS
 
 - ES7 React/ Redux snippets in vscode extension
@@ -172,7 +176,7 @@ import counterReducer from "../features/counterSlice";
 
 ## Adding animations using react flip move
 
-Check the link below for more information: (react-flip-move)[https://github.com/joshwcomeau/react-flip-move]
+Check the link below for more information: [react-flip-move](https://github.com/joshwcomeau/react-flip-move)
 
 - Install react flip move using
 
@@ -215,3 +219,35 @@ const Post = forwardRef(({ name, description, message, photoUrl }, ref) => {
 ## CSS CRACKS
 
 - height: fit-content;
+
+## DEPLOYMENT
+
+1. Run these commands:
+
+```bash
+$ firebase login
+$ firebase init
+//NOTE: Use spacebar tab to choose an option and click enter select  **Hosting: Configure files for Firebase
+//Hosting and (optionally) set up GitHub Action deploys**
+// Select **Use an existing project**
+// select the project you want to deploy
+```
+
+**NOTE**
+
+- What do you want to use as your public directory? build
+  From the above i typed **build** as the public folder for this project
+
+* Configure as a single-page app (rewrite all urls to /index.html)? y
+  From the above i typed **y** as yes
+* Set up automatic builds and deploys with GitHub? n
+  From the above i typed **n** as no
+
+2. And finally run this command
+
+```bash
+$ npm run build //This creates a build folder on our project
+$ firebase deploy
+```
+
+NOTE: If you make new modifications after running **npm run build** command then you must re-run the command to compile the new changes.
